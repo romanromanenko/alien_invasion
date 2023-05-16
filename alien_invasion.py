@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     def __init__(self):
@@ -11,6 +12,7 @@ class AlienInvasion:
             self.settings.screen_width,
             self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
+        self.ship = Ship(self)
 
 
     def run_game(self):
@@ -20,6 +22,7 @@ class AlienInvasion:
                     sys.exit()
 
             self.screen.blit(self.settings.bg_immage, (0, 0))
+            self.ship.blitme()
 
             pygame.display.flip()
 
