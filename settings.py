@@ -9,6 +9,6 @@ class Settings():
         self.ship_speed = 3
 
         self.bullet_speed = 5
-        self.bullet_width = 3
+        self.bullet_width = 5
         self.bullet_height = 15
         self.bullet_color = (100, 0, 0)
