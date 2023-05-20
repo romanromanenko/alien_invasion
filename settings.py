@@ -7,6 +7,7 @@ class Settings():
         self.screen_height = 800
         self.bg_immage = pygame.image.load('images/background.webp')
         self.ship_speed = 3
+        self.ship_limit = 3
 
         self.bullet_speed = 5
         self.bullet_width = 5
