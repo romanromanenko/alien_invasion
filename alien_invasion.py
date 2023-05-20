@@ -14,8 +14,7 @@ class AlienInvasion:
             (
                 self.settings.screen_width,
                 self.settings.screen_height
-            ),
-            #pygame.FULLSCREEN # uncomment for full screen displaying
+            )
         )
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
@@ -27,15 +26,24 @@ class AlienInvasion:
     def _create_alien(self, alien_number, row_number):
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
-        #alien_width = alien.rect.width
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
+    def _check_fleet_edges(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+
     def _create_fleet(self):
         alien = Alien(self)
-        alien_width = alien.rect.width
         alien_width, alien_height = alien.rect.size
         avaliable_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = avaliable_space_x // (2 * alien_width)
@@ -86,11 +94,16 @@ class AlienInvasion:
 
         pygame.display.flip()
 
+    def _update_alians(self):
+        self._check_fleet_edges()
+        self.aliens.update()
+
     def run_game(self):
         while True:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+            self._update_alians()
             self._upgrade_screen()
 
             for bullet in self.bullets.copy():
