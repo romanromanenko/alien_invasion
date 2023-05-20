@@ -147,10 +147,6 @@ class AlienInvasion:
                 self._update_aliens()
             self._upgrade_screen()
 
-            # for bullet in self.bullets.copy():
-            #     if bullet.rect.bottom <= 0:
-            #         self.bullets.remove(bullet)
-
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
