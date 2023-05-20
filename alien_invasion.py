@@ -13,10 +13,7 @@ class AlienInvasion:
         self.settings = Settings()
 
         self.screen = pygame.display.set_mode(
-            (
-                self.settings.screen_width,
-                self.settings.screen_height
-            )
+            (self.settings.screen_width,self.settings.screen_height)
         )
         pygame.display.set_caption("Alien Invasion")
         self.stats = GameStats(self)
@@ -146,10 +143,6 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
             self._upgrade_screen()
-
-            # for bullet in self.bullets.copy():
-            #     if bullet.rect.bottom <= 0:
-            #         self.bullets.remove(bullet)
 
 if __name__ == '__main__':
     ai = AlienInvasion()
